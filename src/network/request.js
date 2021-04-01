@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-26 15:20:41
- * @LastEditTime: 2021-03-27 13:27:27
+ * @LastEditTime: 2021-03-31 10:37:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \learnaxios\src\network\request.js
@@ -80,7 +80,8 @@ export function request(config){
  
      //1.创建axios的实例
    const instance = axios.create({
-     baseURL: 'http://123.207.32.32:8000',
+    //  baseURL: 'http://123.207.32.32:8000',
+     baseURL:"http://152.136.185.210:7878/api/m5",
      timeout: 5000
    })
 

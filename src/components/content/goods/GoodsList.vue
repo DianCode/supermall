@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-30 16:47:39
- * @LastEditTime: 2021-03-30 17:29:44
+ * @LastEditTime: 2021-03-31 10:41:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \supermall\src\components\content\goods\GoodsList.vue
 -->
 <template>
   <div class="goods">
-    <goods-list-item v-for="item in goods" :goods-item="item" :key="item">
+    <goods-list-item v-for="item in goods" :goods-item="item" :key="item.title">
 
     </goods-list-item>
   </div>

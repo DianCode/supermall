@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-30 16:49:09
- * @LastEditTime: 2021-03-30 17:21:36
+ * @LastEditTime: 2021-04-01 14:31:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \supermall\src\components\content\goods\GoodsListItem.vue
 -->
 <template>
   <div class="goods-item">
-    <img :src="goodsItem.show.img" alt="">
+    <img :src="goodsItem.show.img" alt="" @load="imageLoad">
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -27,7 +27,14 @@ export default {
         return {}
       }
     }
-  }
+  },
+  methods: {
+    imageLoad(){
+      // console.log('imageLoad');
+      // console.log(this.$bus);
+      this.$bus.$emit('itemImageLoad')
+    }
+  },
 }
 </script>
 
