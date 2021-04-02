@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-30 10:47:45
- * @LastEditTime: 2021-03-30 10:56:19
+ * @LastEditTime: 2021-04-02 09:27:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \supermall\src\views\home\childComps\HomeSwiper.vue
@@ -41,6 +41,8 @@
     methods: {
       imageLoad() {
         if (!this.isLoad) {
+          //这里事件的发出，只需要发出一次就可以了
+          //为的是计算出scrollTop的值
           this.$emit('swiperImageLoad')
           this.isLoad = true
         }

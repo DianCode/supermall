@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-31 13:11:18
- * @LastEditTime: 2021-04-01 15:55:20
+ * @LastEditTime: 2021-04-02 13:55:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \supermall\src\components\common\scroll\Scroll.vue
@@ -46,10 +46,12 @@
         //console.log(position)
           this.$emit('scroll',position);
         })
+
+      
       }
      
-
-      // console.log(this.scroll);
+      console.log("===new出来的BScroll对象=====")
+      console.log(this.scroll);
 
 
       //3.监听上拉事件
@@ -63,7 +65,7 @@
     },
     methods: {
       scrollTo(x, y, time=300) {
-        this.scroll && this.scroll.scrollTo(x, y, time)
+        this.scroll && this.scroll.scrollTo(x, y, time);
       },
       refresh() {
         console.log('=====Scroll.vue=====refresh=====')
@@ -71,6 +73,9 @@
       },
       finishPullUp(){
           this.scroll && this.scroll.finishPullUp()
+      },
+      getScrollY(){
+        return this.scroll? this.scroll.y:0
       }
     }
   }
