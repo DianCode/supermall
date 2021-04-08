@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-04-08 11:37:55
- * @LastEditTime: 2021-04-08 11:55:38
+ * @LastEditTime: 2021-04-08 14:27:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \supermall\src\store\mutations.js
@@ -63,6 +63,7 @@ export default {
     payload.count++;
   },
   [ADD_TO_CART](state, payload) {
+    payload.checked=true;
     state.cartList.push(payload);
   }
 }

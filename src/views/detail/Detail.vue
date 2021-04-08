@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-02 15:07:32
- * @LastEditTime: 2021-04-08 11:30:44
+ * @LastEditTime: 2021-04-08 15:20:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \supermall\src\views\detail\Detail.vue
@@ -296,12 +296,20 @@ export default {
 
     addToCart(){
       //1.获取购物车需要展示的信息
-      const product= {};
-      product.image=this.topImages[0];
-      product.title=this.goods.title;
-      product.desc=this.goods.desc;
-      product.price=this.goods.realPrice;
-      product.iid=this.iid;
+      // const product= {};
+      // product.image=this.topImages[0];
+      // product.title=this.goods.title;
+      // product.desc=this.goods.desc;
+      // product.price=this.goods.realPrice;
+      // product.iid=this.iid;
+
+      const product = {}
+                product.image = this.topImages[0]
+                product.title = this.goods.title
+                product.desc = this.goods.desc
+                product.price = this.goods.newPrice
+                product.iid = this.iid
+                product.realPrice = this.goods.realPrice
 
       //2.将商品添加到购物车
       this.$store.dispatch('addCart',product)

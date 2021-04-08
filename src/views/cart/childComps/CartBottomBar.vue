@@ -9,7 +9,7 @@
         </div>
         <div :class="{cacluate:checkColors}" class="cacl" @click='calcClick'>
             <span>
-                去结算: {{checkLength}}
+                去结算: {{totalCount}}
             </span>
         </div>
     </div>
@@ -28,26 +28,42 @@
             }
         },
         computed: {
-            ...mapGetters(['cartList']),
-            totalPrice() {
-                return '￥' + this.cartList.filter(item => {
-                    return item.checked
-                }).reduce((preValue, item) => {
-                    return preValue + item.realPrice * item.count
-                }, 0).toFixed(2)
-            },
-            checkLength() {
-                return this.cartList.filter(item => {
-                    return item.checked
-                }).reduce((preValue, item) => {
-                    return preValue + item.count
-                }, 0)
+            ...mapGetters(['cartList','totalPrice','totalCount']),
+            // totalPrice() {
+            //     return '￥' + this.cartList.filter(item => {
+            //         return item.checked
+            //     }).reduce((preValue, item) => {
+            //         return preValue + item.realPrice * item.count
+            //     }, 0).toFixed(2)
+            // },
+            // checkLength() {
+            //     return this.cartList.filter(item => {
+            //         return item.checked
+            //     }).reduce((preValue, item) => {
+            //         return preValue + item.count
+            //     }, 0)
+            // },
+            checkLength(){
+                return this.cartList.filter(item => item.checked).length
             },
             isSelectAll() {
+
+                //1.使用filter
+                // return !(this.cartList.filter(item => !item.checked).length)
+
+                //2.使用find
                 //值为0就是false 当item.checked都为true时，find返回undefined
-                if (this.cartList.length) {
-                    return !this.cartList.find(item => !item.checked)
+                // if (this.cartList.length) {
+                //     return !this.cartList.find(item => !item.checked)
+                // }
+
+                //3.普通遍历
+                for (let item of this.cartList){
+                    if(!item.checked){
+                        return false
+                    }
                 }
+                return true
             },
             checkColors() {
                 //判断结算颜色
