@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-02 15:07:32
- * @LastEditTime: 2021-04-08 11:08:53
+ * @LastEditTime: 2021-04-08 11:30:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \supermall\src\views\detail\Detail.vue
@@ -304,7 +304,7 @@ export default {
       product.iid=this.iid;
 
       //2.将商品添加到购物车
-      this.$store.commit('addCart',product)
+      this.$store.dispatch('addCart',product)
 
 
     }

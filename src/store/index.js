@@ -1,13 +1,17 @@
 /*
  * @Author: your name
  * @Date: 2021-03-29 10:33:46
- * @LastEditTime: 2021-04-08 11:04:39
+ * @LastEditTime: 2021-04-08 13:20:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \supermall\src\store\index.js
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
+
+import mutations from './mutations'
+import actions from './actions'
+import getters from './getters'
 
 // 1.安装插件
 Vue.use(Vuex)
@@ -24,55 +28,18 @@ Vue.use(Vuex)
 //   }
 // })
 
+const state={
+  cartList:[]
+}
+
 const store = new Vuex.Store({
-  state:{
-    cartList: []
-  },
-  mutations: {
-    addCart(state,payload){
-      //payload新添加的商品
-      // let oldProduct=null;
-      // for(let item of state.cartList){
-      //   if(item.iid === payload.iid){
-      //     oldProduct=item;
-      //   }
-      // }
-      //2.判断oldProduct
-      // if (oldProduct) {
-      //   oldProduct.count += 1;
-      // } else {
-      //   payload.count = 1;
-      //   state.cartList.push(payload);
-      // }
+  state,
+  //mutations唯一的目的就是修改state中状态
+  //mutations中的每个方法尽可能完成的事件比较单一一点
+  mutations,
+  actions,
+  getters
 
-      //数组常用的方法优哪些?
-      //push/pop/unshift/shift/sort/reverse/map/filter/reduce/join
-      // let index = state.cartList.indexOf(payload);
-      // if(index === -1){
-      //   let oldProduct = state.cartList[index];
-      //   oldProduct.count +=1;
-      // }else {
-      //   payload.count =1;
-      //   state.cartList.push(payload);
-      // }
-
-
-      //第三种写法
-      //查找之前数组中是否有该商品
-      let oldProduct = state.cartList.find(function (item){
-        return item.iid===payload.iid
-      })
-
-      if(oldProduct){
-        oldProduct.count +=1;
-      }else {
-        payload.count = 1;
-        state.cartList.push(payload);
-      }
-      
-     
-    }
-  }
 })
 
 
