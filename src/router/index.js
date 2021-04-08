@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-29 10:33:46
- * @LastEditTime: 2021-03-29 17:28:34
+ * @LastEditTime: 2021-04-02 15:22:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \supermall\src\router\index.js
@@ -38,6 +38,11 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: ()=>import('../views/profile/Profile.vue')
+  },
+  {
+    path: '/detail/:iid',
+    name: 'Detail',
+    component: () => import('../views/detail/Detail.vue')
   }
   
 ]

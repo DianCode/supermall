@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-31 13:11:18
- * @LastEditTime: 2021-04-02 13:55:56
+ * @LastEditTime: 2021-04-02 15:05:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \supermall\src\components\common\scroll\Scroll.vue
@@ -40,12 +40,18 @@
         pullUpLoad: this.pullUpLoad
       })
 
+     
       //2.监听滚动的位置
       if (this.probeType === 2 || this.probeType === 3){
         this.scroll.on('scroll',(position)=>{
-        //console.log(position)
+          // console.log("=====监听滚动位置=====");
+          // console.log("scrollY=="+this.scroll.y);
+          // console.log("=====滚动时=====")
+          // console.log(position)
           this.$emit('scroll',position);
         })
+
+       
 
       
       }
