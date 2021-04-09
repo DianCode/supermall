@@ -1,0 +1,117 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-04-09 16:16:12
+ * @LastEditTime: 2021-04-09 16:42:15
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \supermall\响应式原理.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- 
+
+   未
+   
+   写
+   
+   完
+  
+  -->
+
+  
+  <input type="text" v-model="message">
+  {{message}}
+
+  <script>
+    class Vue {
+      constructor(options){
+        //1.保存数据
+        this.$options=options;
+        this.$data=options.data;
+        this.$el=options.el;
+
+        //2.将data添加到响应式系统中
+        new Observer(this.$data);
+
+        //3.代理this.$data的数据
+        Object.keys(this.$data).forEach(key => {
+          this._proxy(key)
+        })
+
+        //4.处理el
+        new Compiler(this.$el,this);
+      }
+
+      _proxy(key) {
+        Object.defineProperty(this, key, {
+          configurable:true,
+          enumerable:true,
+          set(newValue) {
+            this.$data[key] =newValue
+          },
+          get() {
+            return this.$data[key]
+          }
+        })
+      }
+    }
+
+    class Observer {
+      constructor(data) {
+        this.data=data;
+
+        Object.keys(data).forEach(key => {
+          this.defineReactive(this.data, key, data[key])
+        })
+      }
+
+      defineReactive(data, key, val) {
+        //一个属性key -> Dep对象
+        //一个属性就对应一个Dep对象
+        const dep = new Dep();
+        Object.defineProperty(data,key, {
+          enumerable:true,
+          configurable:true,
+          get(){
+            if(Dep.target) {
+              dep.addSub(Dep.target)
+            }
+            return val
+          },
+          set(newValue) {
+            if(newValue === val) {
+              return
+            }
+            val = newValue
+            dep.notify()
+          }
+        })
+      }
+    }
+
+    class Dep {
+      constructor() {
+        this.subs = []
+      }
+
+      addSub(sub) {
+        this.subs.push(sub)
+      }
+
+      notify() {
+        this.subs.forEach( sub => {
+          sub.update()
+        })
+      }
+    }
+  </script>
+</body>
+</html>

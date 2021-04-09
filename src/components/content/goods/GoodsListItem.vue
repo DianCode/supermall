@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-30 16:49:09
- * @LastEditTime: 2021-04-06 20:21:09
+ * @LastEditTime: 2021-04-09 10:14:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \supermall\src\components\content\goods\GoodsListItem.vue
@@ -16,7 +16,11 @@
     </div>
   </div> -->
     <div class="goods-item" @click="itemClick">
-    <img :src="showImage" alt="" @load="imageLoad">
+
+    <!-- <img :src="showImage" alt="" @load="imageLoad"> -->
+    <!--改为图片懒加载模式-->
+     <img v-lazy="showImage" alt="" @load="imageLoad">
+
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
