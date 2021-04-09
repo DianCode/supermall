@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-02 15:07:32
- * @LastEditTime: 2021-04-08 15:20:03
+ * @LastEditTime: 2021-04-09 08:55:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \supermall\src\views\detail\Detail.vue
@@ -11,11 +11,11 @@
     <detail-nav-bar class="detail-nav" @titleClick="titleClick" ref="nav"/>
     <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll">
 
-      <ul>
+      <!-- <ul>
         <li v-for="item in $store.state.cartList" :key="item.title">
           {{item}}
         </li>
-      </ul>
+      </ul> -->
       <detail-swiper :top-images="topImages" />
       <detail-base-info :goods="goods" />
       <detail-shop-info :shop="shop" />
@@ -33,6 +33,8 @@
     <detail-bottom-bar @addCart="addToCart"/>
      <!--监听组件的监听事件,需要在点击事件加个native修饰符-->
     <back-top @click.native="backClick" v-show="isShowBackTop"/>
+
+    <!-- <toast :message="message" :show="show"/> -->
   </div>
 </template>
 
@@ -56,8 +58,10 @@ import {
 } from "network/detail";
 import Scroll from "components/common/scroll/Scroll.vue";
 import GoodsList from "components/content/goods/GoodsList";
+// import Toast from 'components/common/toast/Toast'
 import { debounce } from "common/utils";
 import { itemListenerMixin,backTopMixin } from "common/mixin";
+
 // import {BACK_POSITION} from 'common/const'
 
 
@@ -74,8 +78,9 @@ export default {
     DetailCommentInfo,
     GoodsList,
     DetailBottomBar,
+    // Toast,
     // BackTop
-  },
+     },
   mixins: [itemListenerMixin,backTopMixin],
   data() {
     return {
@@ -93,6 +98,8 @@ export default {
       getThemeTopY:null,
       currentIndex:0,
       // isShowBackTop:false
+      message:'',
+      show:false
     };
   },
   created() {
@@ -312,9 +319,23 @@ export default {
                 product.realPrice = this.goods.realPrice
 
       //2.将商品添加到购物车
-      this.$store.dispatch('addCart',product)
+      this.$store.dispatch('addCart',product).then(res=>{
+        console.log(res);
+        
+        // this.show=true;
+        // this.message=res;
+        // setTimeout(()=>{
+        //   this.show=false;
+        //   this.message=""
+        // },1500)
 
 
+        this.$toast.show(res);
+        console.log("===$toast===");
+        console.log(this.$toast)
+
+        
+      })
     }
   },
 };
